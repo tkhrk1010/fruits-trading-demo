@@ -8,7 +8,6 @@ import (
 	"github.com/tkhrk1010/fruits-trading-demo/actors/market"
 )
 
-// CollectMarketInfo collects market information.
 func (handler *TradeInformationHandler) collectMarketInfo() (*market.Response, error) {
 	marketProps := actor.PropsFromProducer(func() actor.Actor { return &market.Actor{} })
 
