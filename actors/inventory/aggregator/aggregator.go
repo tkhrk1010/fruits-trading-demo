@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/asynkron/protoactor-go/actor"
-	"github.com/tkhrk1010/fruits-trading-demo/actors/collector"
+	"github.com/tkhrk1010/fruits-trading-demo/actors/inventory/collector"
 )
 
 type AggregatorActor struct {

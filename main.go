@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 
 	"github.com/asynkron/protoactor-go/actor"
-	"github.com/tkhrk1010/fruits-trading-demo/actors/aggregator"
-	"github.com/tkhrk1010/fruits-trading-demo/actors/collector"
+	"github.com/tkhrk1010/fruits-trading-demo/actors/inventory/aggregator"
+	"github.com/tkhrk1010/fruits-trading-demo/actors/inventory/collector"
 	// "github.com/tkhrk1010/fruits-trading-demo/infra/rdb"
 )
 

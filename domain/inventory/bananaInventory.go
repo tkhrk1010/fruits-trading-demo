@@ -1,4 +1,4 @@
-package domain
+package inventory
 
 type BananaInventory struct {}
 

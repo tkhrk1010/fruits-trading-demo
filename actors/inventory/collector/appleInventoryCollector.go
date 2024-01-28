@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/asynkron/protoactor-go/actor"
-	"github.com/tkhrk1010/fruits-trading-demo/domain"
+	"github.com/tkhrk1010/fruits-trading-demo/domain/inventory"
 )
 
 type AppleInventoryCollectorActor struct {
@@ -17,7 +17,7 @@ func (state *AppleInventoryCollectorActor) Receive(ctx actor.Context) {
 		fmt.Println("AppleInventoryCollectorActor: Received CollectInventoryRequest")
 
 		// collect apple inventory info
-		apples := domain.AppleInventory{}
+		apples := inventory.AppleInventory{}
 		averagePurchasingPrice := apples.GetAveragePurchasingPrice()
 		count := apples.GetCount()
 
