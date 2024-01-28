@@ -1,15 +1,15 @@
 package handler
 
 import (
-	"time"
 	"fmt"
+	"time"
 
 	"github.com/asynkron/protoactor-go/actor"
 	"github.com/tkhrk1010/fruits-trading-demo/actors/inventory/aggregator"
 	"github.com/tkhrk1010/fruits-trading-demo/actors/inventory/collector"
 )
 
-func (handler *TradeInformationHandler) collectInventoryInfo() (*aggregator.AggregateResponse, error) {
+func (handler *TradeSupportInformationHandler) collectInventoryInfo() (*aggregator.AggregateResponse, error) {
 	orangeInventoryCollector := handler.spawnActor(func() actor.Actor { return &collector.OrangeActor{} })
 	appleInventoryCollector := handler.spawnActor(func() actor.Actor { return &collector.AppleActor{} })
 	bananaInventoryCollector := handler.spawnActor(func() actor.Actor { return &collector.BananaActor{} })

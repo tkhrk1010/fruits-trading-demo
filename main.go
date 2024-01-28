@@ -8,8 +8,8 @@ import (
 
 func main() {
 
-	tradeInformationHandler := handler.NewTradeInformationHandler()
-	jsonResponse, err := tradeInformationHandler.GetTradeInformation()
+	tradeSupportInformationHandler := handler.NewTradeSupportInformationHandler()
+	jsonResponse, err := tradeSupportInformationHandler.GetTradeSupportInformation()
 	if err != nil {
 		fmt.Println("Error while getting trade information:", err)
 		return

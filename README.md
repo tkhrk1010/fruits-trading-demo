@@ -20,7 +20,7 @@ graph TD
 ```mermaid
 sequenceDiagram
   participant Trader
-  participant TradeInformationHandler 
+  participant TradeSupportInformationHandler 
   participant InventoryAggregator
   participant AppleInventoryCollector
   participant OrangeInventoryCollector
@@ -29,9 +29,9 @@ sequenceDiagram
   participant InventoryDB
   participant TradeResultDB
 
-  Trader ->> TradeInformationHandler : Start Transaction
-  TradeInformationHandler ->> MarketPriceCollector : Request Market Price
-  TradeInformationHandler ->> InventoryAggregator : Collect Information
+  Trader ->> TradeSupportInformationHandler : Start Transaction
+  TradeSupportInformationHandler ->> MarketPriceCollector : Request Market Price
+  TradeSupportInformationHandler ->> InventoryAggregator : Collect Information
   InventoryAggregator ->> AppleInventoryCollector : Get Inventory Information
   InventoryAggregator ->> OrangeInventoryCollector : Get Inventory Information
   InventoryAggregator ->> BananaInventoryCollector : Get Inventory Information
@@ -44,9 +44,9 @@ sequenceDiagram
   BananaInventoryCollector ->> InventoryDB : Get Inventory Information
   InventoryDB -->> BananaInventoryCollector :  Inventory Information
   BananaInventoryCollector -->> InventoryAggregator : Inventory Information
-  InventoryAggregator -->> TradeInformationHandler : Inventory Information
-  MarketPriceCollector -->> TradeInformationHandler : Market Price Information
-  TradeInformationHandler -->> Trader : Information
+  InventoryAggregator -->> TradeSupportInformationHandler : Inventory Information
+  MarketPriceCollector -->> TradeSupportInformationHandler : Market Price Information
+  TradeSupportInformationHandler -->> Trader : Information
   Trader ->> Trader : judge sell/hold
   Trader ->> TradeResultDB : Save Result
 
@@ -55,8 +55,8 @@ sequenceDiagram
 ## Actor structure
 ```mermaid
 graph TD
-  TradeInformationHandler --> PriceCollector
-  TradeInformationHandler --> InventoryAggregator
+  TradeSupportInformationHandler --> PriceCollector
+  TradeSupportInformationHandler --> InventoryAggregator
   InventoryAggregator --> AppleInventoryCollector
   InventoryAggregator --> OrangeInventoryCollector
   InventoryAggregator --> BananaInventoryCollector

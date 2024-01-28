@@ -1,14 +1,14 @@
 package handler
 
 import (
-	"time"
 	"fmt"
+	"time"
 
 	"github.com/asynkron/protoactor-go/actor"
 	"github.com/tkhrk1010/fruits-trading-demo/actors/market"
 )
 
-func (handler *TradeInformationHandler) collectMarketInfo() (*market.Response, error) {
+func (handler *TradeSupportInformationHandler) collectMarketInfo() (*market.Response, error) {
 	marketProps := actor.PropsFromProducer(func() actor.Actor { return &market.Actor{} })
 
 	result, err := handler.requestActorResponse(marketProps, &market.Request{

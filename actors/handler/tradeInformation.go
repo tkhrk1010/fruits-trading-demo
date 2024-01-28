@@ -10,7 +10,7 @@ import (
 	"github.com/tkhrk1010/fruits-trading-demo/actors/market"
 )
 
-type TradeInformationHandler struct {
+type TradeSupportInformationHandler struct {
 	system *actor.ActorSystem
 }
 
@@ -24,7 +24,7 @@ type CombinedResponse struct {
 	Items map[string]CombinedItemDetails `json:"items"`
 }
 
-func (handler *TradeInformationHandler) GetTradeInformation() ([]byte, error) {
+func (handler *TradeSupportInformationHandler) GetTradeSupportInformation() ([]byte, error) {
 	aggregatorResponse, err := handler.collectInventoryInfo()
 	if err != nil {
 		return nil, err
@@ -46,19 +46,18 @@ func (handler *TradeInformationHandler) GetTradeInformation() ([]byte, error) {
 	return jsonResponse, nil
 }
 
-
-func NewTradeInformationHandler() *TradeInformationHandler {
-	return &TradeInformationHandler{
+func NewTradeSupportInformationHandler() *TradeSupportInformationHandler {
+	return &TradeSupportInformationHandler{
 		system: actor.NewActorSystem(),
 	}
 }
 
-func (handler *TradeInformationHandler) spawnActor(producer func() actor.Actor) *actor.PID {
+func (handler *TradeSupportInformationHandler) spawnActor(producer func() actor.Actor) *actor.PID {
 	props := actor.PropsFromProducer(producer)
 	return handler.system.Root.Spawn(props)
 }
 
-func (handler *TradeInformationHandler) requestActorResponse(props *actor.Props, request interface{}, timeout time.Duration) (interface{}, error) {
+func (handler *TradeSupportInformationHandler) requestActorResponse(props *actor.Props, request interface{}, timeout time.Duration) (interface{}, error) {
 	actorRef := handler.system.Root.Spawn(props)
 	future := handler.system.Root.RequestFuture(actorRef, request, timeout)
 	return future.Result()
@@ -85,4 +84,3 @@ func CombineResponses(aggregatorResponse *aggregator.AggregateResponse, marketRe
 
 	return combined
 }
-
