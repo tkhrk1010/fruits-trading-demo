@@ -17,7 +17,7 @@ func (state *BananaInventoryCollectorActor) Receive(ctx actor.Context) {
 		fmt.Println("BananaInventoryCollectorActor: Received CollectInventoryRequest")
 
 		// collect banana inventory info
-		bananas := inventory.BananaInventory{}
+		bananas := inventory.Banana{}
 		averagePurchasingPrice := bananas.GetAveragePurchasingPrice()
 		count := bananas.GetCount()
 
