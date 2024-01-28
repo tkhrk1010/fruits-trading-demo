@@ -20,7 +20,7 @@ graph TD
 ```mermaid
 sequenceDiagram
   participant Trader
-  participant InfoCollector 
+  participant TradeInformationHandler 
   participant InventoryAggregator
   participant AppleInventoryCollector
   participant OrangeInventoryCollector
@@ -29,9 +29,9 @@ sequenceDiagram
   participant InventoryDB
   participant TradeResultDB
 
-  Trader ->> InfoCollector : Start Transaction
-  InfoCollector ->> MarketPriceCollector : Request Market Price
-  InfoCollector ->> InventoryAggregator : Collect Information
+  Trader ->> TradeInformationHandler : Start Transaction
+  TradeInformationHandler ->> MarketPriceCollector : Request Market Price
+  TradeInformationHandler ->> InventoryAggregator : Collect Information
   InventoryAggregator ->> AppleInventoryCollector : Get Inventory Information
   InventoryAggregator ->> OrangeInventoryCollector : Get Inventory Information
   InventoryAggregator ->> BananaInventoryCollector : Get Inventory Information
@@ -44,9 +44,9 @@ sequenceDiagram
   BananaInventoryCollector ->> InventoryDB : Get Inventory Information
   InventoryDB -->> BananaInventoryCollector :  Inventory Information
   BananaInventoryCollector -->> InventoryAggregator : Inventory Information
-  InventoryAggregator -->> InfoCollector : Inventory Information
-  MarketPriceCollector -->> InfoCollector : Market Price Information
-  InfoCollector -->> Trader : Information
+  InventoryAggregator -->> TradeInformationHandler : Inventory Information
+  MarketPriceCollector -->> TradeInformationHandler : Market Price Information
+  TradeInformationHandler -->> Trader : Information
   Trader ->> Trader : judge sell/hold
   Trader ->> TradeResultDB : Save Result
 
@@ -55,8 +55,8 @@ sequenceDiagram
 ## Actor structure
 ```mermaid
 graph TD
-  InfoCollector --> PriceCollector
-  InfoCollector --> InventoryAggregator
+  TradeInformationHandler --> PriceCollector
+  TradeInformationHandler --> InventoryAggregator
   InventoryAggregator --> AppleInventoryCollector
   InventoryAggregator --> OrangeInventoryCollector
   InventoryAggregator --> BananaInventoryCollector
