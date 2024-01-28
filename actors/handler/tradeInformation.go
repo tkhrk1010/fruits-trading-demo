@@ -1,9 +1,9 @@
 package handler
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
-	"encoding/json"
 
 	"github.com/asynkron/protoactor-go/actor"
 	"github.com/tkhrk1010/fruits-trading-demo/actors/inventory/aggregator"
@@ -21,13 +21,13 @@ func NewTradeInformationHandler() *TradeInformationHandler {
 }
 
 func (handler *TradeInformationHandler) GetTradeInformation() ([]byte, error) {
-	orangeInventoryProps := actor.PropsFromProducer(func() actor.Actor { return &collector.OrangeInventoryCollectorActor{} })
+	orangeInventoryProps := actor.PropsFromProducer(func() actor.Actor { return &collector.OrangeActor{} })
 	orangeInventoryCollector := handler.system.Root.Spawn(orangeInventoryProps)
 
-	AppleInventoryProps := actor.PropsFromProducer(func() actor.Actor { return &collector.AppleInventoryCollectorActor{} })
+	AppleInventoryProps := actor.PropsFromProducer(func() actor.Actor { return &collector.AppleActor{} })
 	AppleInventoryCollector := handler.system.Root.Spawn(AppleInventoryProps)
 
-	bananaInventoryProps := actor.PropsFromProducer(func() actor.Actor { return &collector.BananaInventoryCollectorActor{} })
+	bananaInventoryProps := actor.PropsFromProducer(func() actor.Actor { return &collector.BananaActor{} })
 	bananaInventoryCollector := handler.system.Root.Spawn(bananaInventoryProps)
 
 	aggregatorProps := actor.PropsFromProducer(func() actor.Actor {

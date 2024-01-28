@@ -7,14 +7,14 @@ import (
 	"github.com/tkhrk1010/fruits-trading-demo/domain/inventory"
 )
 
-type AppleInventoryCollectorActor struct {
+type AppleActor struct {
 	InventoryCollectorActor
 }
 
-func (state *AppleInventoryCollectorActor) Receive(ctx actor.Context) {
+func (state *AppleActor) Receive(ctx actor.Context) {
 	switch ctx.Message().(type) {
 	case *CollectInventoryRequest:
-		fmt.Println("AppleInventoryCollectorActor: Received CollectInventoryRequest")
+		fmt.Println("AppleActor: Received CollectInventoryRequest")
 
 		// collect apple inventory info
 		apples := inventory.Apple{}
@@ -24,7 +24,7 @@ func (state *AppleInventoryCollectorActor) Receive(ctx actor.Context) {
 		ctx.Respond(&InventoryResponse{ItemName: "apple", AveragePurchasingPrice: averagePurchasingPrice, Count: count})
 
 	case *actor.ReceiveTimeout:
-		fmt.Println("AppleInventoryCollectorActor: Received timeout")
+		fmt.Println("AppleActor: Received timeout")
 		ctx.Respond(&InventoryResponse{ItemName: "apple", AveragePurchasingPrice: 0.0, Count: 0})
 	}
 }
